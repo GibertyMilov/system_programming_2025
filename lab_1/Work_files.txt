@@ -1,0 +1,27 @@
+touch Work_files 
+mkdir Work
+cd Work
+mkdir "Лабораторная работа №1!"
+mkdir ФИО
+chmod u=rwx,g=rwx,o=w "Лабораторнаяработа№1!"
+chmod u+rwx "ФИО"
+touch "Work/Text @1" 'Work/Text $2' "Work/Text #3"
+cat > "Text @1" << EOF
+Птица говорун отличается умом и сообразительностью!
+
+Отличается умом, отличается сообразительностью...
+EOF
+
+cp "Text @1" 'Text $2'
+cp "Text @1" "ФИО/"
+gzip "Text @1" "Text #3"
+tar -cf MyAchiv.tar "Text @1.gz" "Text #3.gz"
+head -1 "Text @1.gz" | gunzip -c > "Text #3.gz" && echo "Будь осторожен! Преступник вооружен!" | gzip >> "Text #3.gz"
+cd ФИО
+gzip "Text 1"
+cd ..
+gunzip -c "ФИО/Text @1.gz" | tac > "ФИО/Result_one"
+mv "ФИО/Result_one" "ФИО/Result_two"
+ls "ФИО"/T* > 'Лабораторная работа №1!/Result_3' 2>/dev/null
+uname -a >> 'Лабораторная работа №1!/Result_3'
+date >> 'Лабораторная работа №1!/Result_3'
