@@ -1,0 +1,27 @@
+a.out
+Dump of assembler code for function _start:
+   0x000000000040100c <+0>:     mov    $0x4,%rax
+   0x0000000000401013 <+7>:     mov    $0x1,%rbx
+   0x000000000040101a <+14>:    movabs $0x401000,%rcx
+   0x0000000000401024 <+24>:    mov    $0xe,%rdx
+   0x000000000040102b <+31>:    int    $0x80
+   0x000000000040102d <+33>:    mov    $0x1,%rax
+   0x0000000000401034 <+40>:    mov    $0x0,%rbx
+   0x000000000040103b <+47>:    int    $0x80
+
+c_version
+Dump of assembler code for function _start:
+   0x0000000000001060 <+0>:     endbr64
+   0x0000000000001064 <+4>:     xor    %ebp,%ebp
+   0x0000000000001066 <+6>:     mov    %rdx,%r9
+   0x0000000000001069 <+9>:     pop    %rsi
+   0x000000000000106a <+10>:    mov    %rsp,%rdx
+   0x000000000000106d <+13>:    and    $0xfffffffffffffff0,%rsp
+   0x0000000000001071 <+17>:    push   %rax
+   0x0000000000001072 <+18>:    push   %rsp
+   0x0000000000001073 <+19>:    xor    %r8d,%r8d
+   0x0000000000001076 <+22>:    xor    %ecx,%ecx
+   0x0000000000001078 <+24>:    lea    0xca(%rip),%rdi        # 0x1149 <main>
+--Type <RET> for more, q to quit, c to continue without paging--
+   0x000000000000107f <+31>:    call   *0x2f53(%rip)        # 0x3fd8
+   0x0000000000001085 <+37>:    hlt

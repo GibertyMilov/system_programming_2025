@@ -22,6 +22,6 @@ gzip "Text 1"
 cd ..
 gunzip -c "ФИО/Text @1.gz" | tac > "ФИО/Result_one"
 mv "ФИО/Result_one" "ФИО/Result_two"
-ls "ФИО"/T* > 'Лабораторная работа №1!/Result_3' 2>/dev/null
+ls "ФИО"/T* > 'Лабораторная работа №1!/Result_3'
 uname -a >> 'Лабораторная работа №1!/Result_3'
 date >> 'Лабораторная работа №1!/Result_3'
