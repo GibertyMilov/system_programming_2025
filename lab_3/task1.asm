@@ -42,8 +42,8 @@ _start:
     call exit
 
 exit:
-    mov rax, 60     ; номер системного вызова exit
-    mov rdi, 0      ; код возврата 0
+    mov rax, 60    
+    mov rdi, 0     
     syscall
     ret
 
@@ -147,3 +147,4 @@ new_line:
     pop rax
 
     ret
+
