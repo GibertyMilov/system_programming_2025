@@ -99,6 +99,7 @@ number_str:
     mov byte [rsi+1], 0
     jmp .end
 
+.convert:
 .digit_loop:
     xor rdx, rdx   
     div rbx         
@@ -147,4 +148,5 @@ new_line:
     pop rax
 
     ret
+
 
