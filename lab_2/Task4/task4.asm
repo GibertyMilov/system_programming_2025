@@ -24,7 +24,7 @@ _start:
 .done:
     mov rax, rsi
     lea rdi, [buf + 31]
-    mov byte [rdi], 0x0A    ; перевод строки
+    mov byte [rdi], 0x0A  
     dec rdi
 
 .conv_loop:
@@ -37,25 +37,19 @@ _start:
     test rax, rax
     jnz .conv_loop
 
-    lea rsi, [rdi + 1]              ; адрес начала числа
+    lea rsi, [rdi + 1]            
     mov rdx, buf + 32
-    sub rdx, rsi         ; длина
+    sub rdx, rsi        
 
-    ;-----------------------------------------
-    ; write(1, rsi, rdx) через int 0x80
-    ; eax = 4, ebx = 1, ecx = buf, edx = len
-    ;-----------------------------------------
+
     mov eax, 4
     mov ebx, 1
-    mov ecx, esi        ; младшие 32 бита адреса
-    shr rsi, 32         ; старшие 32 бита адреса
-    mov edx, edx        ; (len помещается в edx автоматически из rdx низких 32)
+    mov ecx, esi   
+    shr rsi, 32       
+    mov edx, edx       
     int 0x80
 
-    ;-----------------------------------------
-    ; exit(0) через int 0x80
-    ; eax = 1, ebx = 0
-    ;-----------------------------------------
+
     mov eax, 1
     xor ebx, ebx
     int 0x80

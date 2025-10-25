@@ -16,33 +16,26 @@ section '.bss' writable
 section '.text' executable
 
 _start:
-    ; Получаем количество аргументов
     pop rcx
-    cmp rcx, 4      ; программа + 3 параметра
+    cmp rcx, 4
     jne .show_usage
 
-    ; Пропускаем имя программы
     pop rsi
 
-    ; Читаем параметр a
     pop rsi
     call str_number
     mov [a], rax
 
-    ; Читаем параметр b
     pop rsi
     call str_number
     mov [b], rax
 
-    ; Читаем параметр c
     pop rsi
     call str_number
     mov [c], rax
 
-    ; Вычисляем выражение: (((a - b) + c) * c)
     call calculate_expression
 
-    ; Выводим результат
     mov rsi, result_msg
     call print_str
     
@@ -59,32 +52,26 @@ _start:
     call print_str
     call exit
 
-; Функция вычисления выражения (((a - b) + c) * c)
 calculate_expression:
     push rbx
     push rcx
 
-    ; Вычисляем (a - b)
+
     mov rax, [a]
-    sub rax, [b]    ; rax = a - b
+    sub rax, [b]
 
-    ; Вычисляем ((a - b) + c)
-    add rax, [c]    ; rax = (a - b) + c
+    add rax, [c]
 
-    ; Вычисляем (((a - b) + c) * c)
-    mov rbx, [c]    ; rbx = c
-    imul rbx        ; rax = rax * rbx
+    mov rbx, [c]   
+    imul rbx        
 
-    ; Сохраняем результат
     mov [result], rax
     
     pop rcx
     pop rbx
     ret
 
-; =============================================
-; БИБЛИОТЕКА ФУНКЦИЙ 
-; =============================================
+
 
 exit:
     mov rax, 60
@@ -134,7 +121,6 @@ number_str:
     mov rbx, 10
     xor rcx, rcx
     
-    ; Проверка на ноль
     test rax, rax
     jnz .convert
     mov byte [rsi], '0'

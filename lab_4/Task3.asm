@@ -27,8 +27,10 @@ start:
 
     xor rbx, rbx        
     lea rsi, [input]
+
 parse_loop:
     mov al, [rsi]
+
     cmp al, 10
     je parsed
     cmp al, 0
@@ -37,16 +39,16 @@ parse_loop:
     jb parsed
     cmp al, '9'
     ja parsed
+
     movzx rdx, byte [rsi]
     sub rdx, '0'
+
     imul rbx, rbx, 10
     add rbx, rdx
     inc rsi
     jmp parse_loop
 parsed:
     mov [n], rbx
-
-
     mov qword [sum], 0
     mov qword [k], 1
     mov qword [sign], -1
@@ -61,10 +63,12 @@ calc_loop:
     add rbx, 1
     imul rax, rbx   
 
+
     mov rcx, [k]
     imul rcx, rcx, 3
     add rcx, 1
     imul rax, rcx       
+
 
     mov rcx, [k]
     imul rcx, rcx, 3

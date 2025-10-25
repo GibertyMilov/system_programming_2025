@@ -15,53 +15,48 @@ _start:
 
     ;; Открываем файл на запись
     mov rdi, [rsp+8]
-    mov rax, 2                  ; sys_open
-    mov rsi, 577                ; O_WRONLY | O_TRUNC | O_CREAT
-    mov rdx, 777o               ; права доступа
+    mov rax, 2              
+    mov rsi, 577              
+    mov rdx, 777o            
     syscall
     cmp rax, 0
     jl .exit_program
-    mov r8, rax                 ; сохраняем файловый дескриптор
+    mov r8, rax              
 
-    ;; Читаем число N из аргумента
     mov rsi, [rsp+16]
     call str_number
-    mov r9, rax                 ; N в r9
+    mov r9, rax                
 
-    ;; Цикл по числам от 2 до N
     mov rbx, 1
 .loop:
     inc rbx
     cmp rbx, r9
     jg .close_file
 
-    ;; Проверяем, простое ли число
     mov rax, rbx
     call is_prime
     cmp rdi, 1
-    jne .loop                   ; если не простое — дальше
+    jne .loop              
 
-    ;; Проверяем, оканчивается ли на 1
     mov rax, rbx
     mov rcx, 10
     xor rdx, rdx
     div rcx
     cmp rdx, 1
-    jne .loop                   ; если не оканчивается на 1 — дальше
+    jne .loop                
 
-    ;; Преобразуем число в строку
+
     mov rax, rbx
     mov rsi, buffer
     call number_str
 
-    ;; Узнаём длину строки
+
     mov rax, buffer
     call len_str
     mov rdx, rax
     mov byte [buffer+rdx], 0x0A
     inc rdx
 
-    ;; Пишем в файл
     mov rax, 1
     mov rdi, r8
     mov rsi, buffer
