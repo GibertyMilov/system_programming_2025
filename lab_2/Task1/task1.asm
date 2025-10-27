@@ -24,7 +24,6 @@ _start:
     jmp     .rev_loop
 
 .done:
-    ; write(1, buf, len)
     mov     rax, 1  
     mov     rdi, 1   
     lea     rsi, [buf]
@@ -37,7 +36,7 @@ _start:
     mov     rdx, 1
     syscall
 
-    ; exit(0)
     mov     rax, 60
     xor     rdi, rdi
     syscall
+

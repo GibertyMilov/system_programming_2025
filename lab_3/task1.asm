@@ -32,7 +32,6 @@ _start:
     call number_str
     call print_str
 
-
     call new_line
 
     call exit
@@ -54,6 +53,9 @@ print_str:
     push rdx
     push rcx
     push rsi
+
+    mov rdi, rsi  
+    call len_str  
     
     mov rdi, rsi
     call len_str
@@ -99,7 +101,7 @@ number_str:
     mov byte [rsi], '0'
     mov byte [rsi+1], 0
     jmp .end
-    
+
 .convert:
 .digit_loop:
     xor rdx, rdx    
@@ -131,6 +133,9 @@ new_line:
     push rdi
     push rsi
     push rdx
+
+    mov rax, 0xA   
+    push rax 
     
     mov rax, 0xA    
     push rax       
@@ -148,4 +153,7 @@ new_line:
     pop rsi
     pop rdi
     pop rax
+
     ret
+
+

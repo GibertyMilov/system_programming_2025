@@ -41,7 +41,6 @@ _start:
     mov     rdx, r15
     syscall
 
-
     mov     rax, 1
     mov     rdi, 1
     lea     rsi, [newline]
@@ -56,3 +55,4 @@ _start:
     mov     rax, 60       
     xor     rdi, rdi
     syscall
+

@@ -13,7 +13,6 @@ _start:
     cmp rcx, 1 
     je .exit_program
 
-    ;; Открываем файл на запись
     mov rdi, [rsp+8]
     mov rax, 2              
     mov rsi, 577              
