@@ -26,7 +26,7 @@ _start:
 .done:
     mov     rax, 1  
     mov     rdi, 1   
-    lea     rsi, [buf]
+    mov     rsi, [buf]
     mov     rdx, rbx     
     syscall
 

@@ -1,6 +1,6 @@
 format elf64
 public _start
-
+; (a - b + c) * c
 section '.data' writable
     usage db 'Usage: program a b c', 0x0A, 0
     result_msg db 'Result: ', 0

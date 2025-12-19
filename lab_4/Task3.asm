@@ -63,7 +63,8 @@ calc_loop:
     add rbx, 1
     imul rax, rbx   
 
-
+    ;(-1) ** k * (k + 1)
+    rcx = k * 3 
     mov rcx, [k]
     imul rcx, rcx, 3
     add rcx, 1
