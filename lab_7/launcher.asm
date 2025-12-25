@@ -121,7 +121,7 @@ main_loop:
     cmp     rax, 0
     je      .child_process
 
-    mov     rdi, rax     ; pid from fork
+    mov     rdi, rax     
     mov     rax, 61      ; wait4
     xor     rsi, rsi
     xor     rdx, rdx
