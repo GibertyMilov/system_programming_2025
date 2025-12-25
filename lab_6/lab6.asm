@@ -2,7 +2,7 @@ format ELF64
 
 public _start
 
-; Импорт функций из библиотеки ncurses
+
 extrn initscr
 extrn endwin
 extrn start_color
@@ -26,7 +26,7 @@ extrn wattr_off
 extrn exit
 extrn usleep
 
-section '.bss' writable
+section '.bss' writable 
     xmax        dq 1
     ymax        dq 1
     x           dq 0

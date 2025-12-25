@@ -47,7 +47,6 @@ _start:
     cmp r14, r13
     jl .fill_loop
     
-    ; Запускаем процессы ПОСЛЕДОВАТЕЛЬНО
     mov r14, 0
 .sequential_loop:
     cmp r14, 4
@@ -150,6 +149,7 @@ action_rare_digit:
 action_median:
     mov rsi, msg_median
     call print_str
+
     mov rax, 9
     xor rdi, rdi
     mov rsi, array_size*8
@@ -159,10 +159,14 @@ action_median:
     xor r9, r9
     syscall
     mov [temp_ptr], rax
+
+
     mov rdi, rax
     mov rsi, [array_ptr]
     mov rcx, array_size
     rep movsq
+
+
     mov rbx, [temp_ptr]
     mov rcx, array_size
     dec rcx
@@ -170,8 +174,8 @@ action_median:
     mov rdx, rcx
     mov rsi, rbx
 .inner_loop:
-    mov rax, [rsi]
-    mov rdi, [rsi + 8]
+    mov rax, [rsi]; array[j]
+    mov rdi, [rsi + 8]; array[j + 1]
     cmp rax, rdi
     jle .no_swap
     mov [rsi], rdi
