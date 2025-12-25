@@ -89,7 +89,6 @@ calc_series:
     fstp qword [x_power]
     
 .calc_loop:
-    ; увеличиваем счетчик слагаемых
     inc qword [term_count]
     
     ; вычисляем текущее слагаемое: x^(4n+1)/(4n+1)
@@ -111,9 +110,8 @@ calc_series:
     faddp st1, st0          ; st0 = 4n + 1
     fdivp st1, st0          ; st0 = x^(4n+1)/(4n+1)
     
-    fst qword [current_term] ; сохраняем текущее слагаемое
+    fst qword [current_term]
     
-    ; добавляем к сумме
     fadd qword [result]
     fstp qword [result]
     
@@ -128,7 +126,7 @@ calc_series:
     jmp .done             ; иначе выходим
     
 .continue:
-    ; проверяем, не слишком ли много итераций
+    ; проверяем на итерации
     cmp qword [term_count], 1000000
     jl .calc_loop
     
@@ -137,7 +135,6 @@ calc_series:
     ret
 
 _start:
-    ; ввод значения x
     mov rdi, prompt_x
     call printf
     
@@ -164,14 +161,11 @@ _start:
     fstp st0              ; очищаем стек
     jbe .invalid_x        ; если |x| >= 1, ошибка
     
-    ; вычисляем аналитическое значение для проверки
     call calc_analytic
     fstp qword [temp]     ; сохраняем аналитический результат
     
-    ; вычисляем сумму ряда
     call calc_series
     
-    ; выводим заголовок таблицы
     mov rdi, output_header
     mov rsi, header_x
     mov rdx, header_epsilon
@@ -179,12 +173,11 @@ _start:
     xor rax, rax
     call printf
     
-    ; выводим результаты
     mov rdi, output_row
     movq xmm0, [x]
     movq xmm1, [epsilon]
     mov rsi, [term_count]
-    mov rax, 2            ; 2 параметра в xmm регистрах
+    mov rax, 2            
     call printf
     
     mov rax, 60
@@ -192,7 +185,6 @@ _start:
     syscall
     
 .invalid_x:
-    ; сообщение об ошибке
     mov rdi, newline
     call printf
     mov rdi, newline
