@@ -16,7 +16,6 @@ number_buf  rb 32
 
 section '.data' writeable
 array_size = 591
-
 msg_multiple_5 db "Numbers divisible by 5: ",0
 msg_rare_digit db "Most rare digit: ",0
 msg_median db "Median: ",0
@@ -129,7 +128,7 @@ action_rare_digit:
     mov rsi, digit_count
     mov rcx, 10
     mov rdx, 0x7FFFFFFF
-    mov r8, 0
+    mov r8, 0; индекс самой редкой цифры
     mov r9, 0
 .find_rare:
     mov eax, [rsi]
@@ -158,6 +157,7 @@ action_median:
     mov r8, -1
     xor r9, r9
     syscall
+    
     mov [temp_ptr], rax
 
 

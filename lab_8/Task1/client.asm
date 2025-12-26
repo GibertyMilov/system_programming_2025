@@ -123,16 +123,19 @@ input_loop:
     mov rsi, msg_enter_move
     mov rdx, msg_enter_move_len
     syscall
+
     mov rax, 0
     mov rdi, 0
     lea rsi, [input_buffer]
     mov rdx, 2
     syscall
+
     mov al, [input_buffer]
     cmp al, '1'
     jb input_loop
     cmp al, '9'
     ja input_loop
+    
     mov rax, 1
     mov rdi, [client_socket]
     lea rsi, [input_buffer]

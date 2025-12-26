@@ -77,7 +77,7 @@ main_loop:
     je      .trim_drop
     cmp     al, 9               ; tab
     je      .trim_drop
-    cmp     al, 13              ; CR
+    cmp     al, 13      
     je      .trim_drop
     jmp     .after_trim
 .trim_drop:
@@ -87,8 +87,6 @@ main_loop:
     dec     rdx
     jmp     .trim_check_char
 .after_trim:
-
-
     xor     rax, rax
     mov     rsi, buffer
 .len_loop:

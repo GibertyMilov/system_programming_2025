@@ -95,7 +95,7 @@ calc_series:
     finit
     fld qword [x_power]  ; st0 = x^(4n-3) (текущая степень)
     
-    ; умножаем на x^4 для получения следующей степени
+    ; умножаем на x^4 
     fld qword [x]
     fmul st0, st0        ; st0 = x^2
     fmul st0, st0        ; st0 = x^4
